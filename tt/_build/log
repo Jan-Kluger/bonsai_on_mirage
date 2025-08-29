@@ -1,0 +1,22 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /Users/yannick/.cache/dune/db
+# Workspace root: /Users/yannick/Documents/OCaml/bonsai_on_mirage/tt
+# Auto-detected concurrency: 12
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /Users/yannick/.opam/5.2.0/bin/ocamlc.opt -config > /var/folders/_w/km7nxsc54w349drpc5r6qj5m0000gn/T/dune_6da4a7_output
+$ (cd duniverse/lwt/src/react && /Users/yannick/.opam/5.2.0/bin/ocaml -I +compiler-libs /Users/yannick/Documents/OCaml/bonsai_on_mirage/tt/_build/.dune/default/duniverse/lwt/src/react/dune.ml)
+$ (cd duniverse/lwt/src/retry && /Users/yannick/.opam/5.2.0/bin/ocaml -I +compiler-libs /Users/yannick/Documents/OCaml/bonsai_on_mirage/tt/_build/.dune/default/duniverse/lwt/src/retry/dune.ml)
+$ (cd duniverse/lwt/src/ppx && /Users/yannick/.opam/5.2.0/bin/ocaml -I +compiler-libs /Users/yannick/Documents/OCaml/bonsai_on_mirage/tt/_build/.dune/default/duniverse/lwt/src/ppx/dune.ml)
+$ (cd duniverse/lwt/src/core && /Users/yannick/.opam/5.2.0/bin/ocaml -I +compiler-libs /Users/yannick/Documents/OCaml/bonsai_on_mirage/tt/_build/.dune/default/duniverse/lwt/src/core/dune.ml)
+$ (cd duniverse/lwt/src/unix && /Users/yannick/.opam/5.2.0/bin/ocaml -I +compiler-libs /Users/yannick/Documents/OCaml/bonsai_on_mirage/tt/_build/.dune/default/duniverse/lwt/src/unix/dune.ml)
+$ (cd duniverse/stdlib-shims/src && /Users/yannick/.opam/5.2.0/bin/ocaml -I +compiler-libs /Users/yannick/Documents/OCaml/bonsai_on_mirage/tt/_build/.dune/default/duniverse/stdlib-shims/src/dune.ml)

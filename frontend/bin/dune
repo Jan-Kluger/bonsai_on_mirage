@@ -1,0 +1,6 @@
+(executables
+ (names main)
+ (modes js)
+ (libraries cohttp bonsai.web)
+ (preprocess (pps js_of_ocaml-ppx)))
+
