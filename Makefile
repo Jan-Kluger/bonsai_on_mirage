@@ -41,11 +41,3 @@ backend:
 copy-unikernel: backend
 	@cp $(UNIKERNEL_SRC) $(UNIKERNEL_DST)
 	@echo "copied unikernel to $(UNIKERNEL_DST)"
-
-# ---------- CLEAN ----------
-# Remove the copied executable and all contents of static/
-clean:
-	@rm -f $(UNIKERNEL_DST)
-	@rm -rf $(STATIC_DIR)/*
-	@echo "cleaned: $(UNIKERNEL_DST) and $(STATIC_DIR) contents"
-
