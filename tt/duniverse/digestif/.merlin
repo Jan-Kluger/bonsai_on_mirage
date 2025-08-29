@@ -1,7 +1,0 @@
-S common
-S src-c
-S src-ocaml
-
-B _build/**
-
-PKG ocamlbuild alcotest
