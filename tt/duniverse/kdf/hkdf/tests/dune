@@ -1,4 +1,0 @@
-(test
-  (name rfctests)
-  (modules rfctests)
-  (libraries alcotest kdf.hkdf ohex))

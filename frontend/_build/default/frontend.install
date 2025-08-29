@@ -1,0 +1,5 @@
+lib: [
+  "_build/install/default/lib/frontend/META"
+  "_build/install/default/lib/frontend/dune-package"
+  "_build/install/default/lib/frontend/opam"
+]

@@ -1,3 +1,0 @@
-(lang dune 2.0)
-(name ptime)
-(version v1.2.0+dune)

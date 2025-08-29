@@ -1,6 +1,0 @@
-(library
- (name mirage_sleep)
- (public_name mirage-sleep)
- (virtual_modules mirage_sleep)
- (default_implementation mirage-sleep.unix)
- (libraries lwt))

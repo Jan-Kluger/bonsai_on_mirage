@@ -1,6 +1,0 @@
-(library
- (name http_tests)
- (libraries http)
- (inline_tests)
- (preprocess
-  (pps ppx_expect)))

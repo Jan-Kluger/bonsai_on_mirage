@@ -1,4 +1,0 @@
-(test
- (name portable)
- (package mirage-ptime)
- (libraries mirage-ptime))

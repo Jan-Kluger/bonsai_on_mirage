@@ -1,3 +1,0 @@
-(lang dune 2.8)
-(name mirage-mtime)
-(version v5.0.0)

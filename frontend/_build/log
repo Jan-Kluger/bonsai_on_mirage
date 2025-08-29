@@ -1,0 +1,17 @@
+# dune build bin/main.bc.js
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /Users/yannick/.cache/dune/db
+# Workspace root: /Users/yannick/Documents/OCaml/mirage_http_world/frontend
+# Auto-detected concurrency: 12
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /Users/yannick/.opam/bonsai-frontend/bin/ocamlc.opt -config > /tmp/dune_18e32b_output
+$ /Users/yannick/.opam/bonsai-frontend/bin/js_of_ocaml --version > /tmp/dune_0a4ccf_output

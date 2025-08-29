@@ -1,4 +1,0 @@
-(library
- (public_name cmdliner-stdlib)
- (name cmdliner_stdlib)
- (libraries cmdliner))

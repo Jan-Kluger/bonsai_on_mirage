@@ -1,5 +1,0 @@
-(library
-  (name hkdf)
-  (public_name kdf.hkdf)
-  (modules hkdf)
-  (libraries digestif))

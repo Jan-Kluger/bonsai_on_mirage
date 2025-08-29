@@ -1,4 +1,0 @@
-(library
- (name cohttp_curl_lwt)
- (public_name cohttp-curl-lwt)
- (libraries http cohttp-curl stringext lwt lwt.unix curl))

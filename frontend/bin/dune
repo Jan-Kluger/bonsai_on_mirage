@@ -1,5 +1,0 @@
-(executables
- (names main)
- (modes js)               ; ← important: JS only
- (libraries bonsai.web)
- (preprocess (pps js_of_ocaml-ppx)))
