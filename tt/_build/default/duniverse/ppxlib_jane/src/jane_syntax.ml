@@ -75,9 +75,8 @@ end = struct
       | Not_this_embedding name ->
         Location.errorf
           ~loc
-          "Tried to desugar the embedded term %a@ as belonging to the %s extension"
-          Embedded_name.pp_quoted_name
-          name
+          "Tried to desugar the embedded term %s@ as belonging to the %s extension"
+          (Format.asprintf "%a" Embedded_name.pp_quoted_name name)
           extension_string
       | Non_embedding ->
         Location.errorf
@@ -255,11 +254,10 @@ module Make_payload_protocol_of_stringable (Stringable : Stringable) :
         let indefinite_article, name = Stringable.indefinite_article_and_name in
         Location.errorf
           ~loc
-          "Attribute payload does not name %s %s:@;%a"
+          "Attribute payload does not name %s %s:@;%s"
           indefinite_article
           name
-          (Printast.payload 0)
-          payload
+          (Format.asprintf "%a" (Printast.payload 0) payload)
     ;;
 
     exception Error of Location.t * error
@@ -392,13 +390,14 @@ end = struct
             ~loc
             "Wrong number of layouts in an layout attribute;@;\
              expecting %i but got this list:@;\
-             %a"
+             %s"
             n
-            (Format.pp_print_list
-               (Format.pp_print_option
-                  ~none:(fun ppf () -> Format.fprintf ppf "None")
-                  Jkinds_pprint.jkind_annotation))
-            jkinds
+            (Format.asprintf "%a"
+               (Format.pp_print_list
+                  (Format.pp_print_option
+                     ~none:(fun ppf () -> Format.fprintf ppf "None")
+                     Jkinds_pprint.jkind_annotation))
+               jkinds)
       ;;
 
       exception Error of Location.t * error
@@ -675,15 +674,13 @@ module Comprehensions = struct
       | Has_payload payload ->
         Location.errorf
           ~loc
-          "Comprehensions attribute has an unexpected payload:@;%a"
-          (Printast.payload 0)
-          payload
+          "Comprehensions attribute has an unexpected payload:@;%s"
+          (Format.asprintf "%a" (Printast.payload 0) payload)
       | Bad_comprehension_embedding subparts ->
         Location.errorf
           ~loc
-          "Unknown, unexpected, or malformed@ comprehension embedded term %a"
-          Embedded_name.pp_quoted_name
-          (Embedded_name.of_feature feature subparts)
+          "Unknown, unexpected, or malformed@ comprehension embedded term %s"
+          (Format.asprintf "%a" Embedded_name.pp_quoted_name (Embedded_name.of_feature feature subparts))
       | No_clauses ->
         Location.errorf ~loc "Tried to desugar a comprehension with no clauses"
     ;;
@@ -916,9 +913,8 @@ module N_ary_functions = struct
       | Has_payload payload ->
         Location.errorf
           ~loc
-          "Syntactic arity attribute has an unexpected payload:@;%a"
-          (Printast.payload 0)
-          payload
+          "Syntactic arity attribute has an unexpected payload:@;%s"
+          (Format.asprintf "%a" (Printast.payload 0) payload)
       | Expected_constraint_or_coerce ->
         Location.errorf
           ~loc
@@ -927,21 +923,18 @@ module N_ary_functions = struct
         Location.errorf
           ~loc
           "Expected a Pexp_function node in this position, as the enclosing Pexp_fun is \
-           annotated with %a."
-          Attribute_node.format
-          attribute
+           annotated with %s."
+          (Format.asprintf "%a" Attribute_node.format attribute)
       | Expected_fun_or_newtype attribute ->
         Location.errorf
           ~loc
-          "Only Pexp_fun or Pexp_newtype may carry the attribute %a."
-          Attribute_node.format
-          attribute
+          "Only Pexp_fun or Pexp_newtype may carry the attribute %s."
+          (Format.asprintf "%a" Attribute_node.format attribute)
       | Expected_newtype_with_jkind_annotation annotation ->
         Location.errorf
           ~loc
-          "Only Pexp_newtype may carry the attribute %a."
-          Attribute_node.format
-          (Attribute_node.Jkind_annotation annotation)
+          "Only Pexp_newtype may carry the attribute %s."
+          (Format.asprintf "%a" Attribute_node.format (Attribute_node.Jkind_annotation annotation))
       | Parameterless_function ->
         Location.errorf
           ~loc
@@ -1334,9 +1327,8 @@ module Labeled_tuples = struct
       | Has_payload payload ->
         Location.errorf
           ~loc
-          "Labeled tuples attribute has an unexpected payload:@;%a"
-          (Printast.payload 0)
-          payload
+          "Labeled tuples attribute has an unexpected payload:@;%s"
+          (Format.asprintf "%a" (Printast.payload 0) payload)
     ;;
 
     exception Error of Location.t * error
@@ -1589,11 +1581,12 @@ module Layouts = struct
       | Unexpected_attribute names ->
         Location.errorf
           ~loc
-          "Layout extension does not understand these attribute names:@;[%a]"
-          (Format.pp_print_list
-             ~pp_sep:(fun ppf () -> Format.fprintf ppf ";@ ")
-             Format.pp_print_text)
-          names
+          "Layout extension does not understand these attribute names:@;[%s]"
+          (Format.asprintf "%a"
+             (Format.pp_print_list
+                ~pp_sep:(fun ppf () -> Format.fprintf ppf ";@ ")
+                Format.pp_print_text)
+             names)
       | No_integer_suffix ->
         Location.errorf
           ~loc
@@ -1602,9 +1595,8 @@ module Layouts = struct
       | Unexpected_wrapped_expr expr ->
         Location.errorf
           ~loc
-          "Layout attribute on wrong expression:@;%a"
-          (Printast.expression 0)
-          expr
+          "Layout attribute on wrong expression:@;%s"
+          (Format.asprintf "%a" (Printast.expression 0) expr)
       | Unexpected_wrapped_pat _pat ->
         Location.errorf ~loc "Layout attribute on wrong pattern"
     ;;

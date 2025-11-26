@@ -1,6 +1,6 @@
 # 1 "duniverse/ppxlib/astlib/ast_503.ml"
 module Asttypes = struct
-  type constant (*IF_CURRENT = Asttypes.constant *) =
+  type constant              = Asttypes.constant    =
       Const_int of int
     | Const_char of char
     | Const_string of string * Location.t * string option
@@ -9,24 +9,24 @@ module Asttypes = struct
     | Const_int64 of int64
     | Const_nativeint of nativeint
 
-  type rec_flag (*IF_CURRENT = Asttypes.rec_flag *) = Nonrecursive | Recursive
+  type rec_flag              = Asttypes.rec_flag    = Nonrecursive | Recursive
 
-  type direction_flag (*IF_CURRENT = Asttypes.direction_flag *) = Upto | Downto
+  type direction_flag              = Asttypes.direction_flag    = Upto | Downto
 
   (* Order matters, used in polymorphic comparison *)
-  type private_flag (*IF_CURRENT = Asttypes.private_flag *) = Private | Public
+  type private_flag              = Asttypes.private_flag    = Private | Public
 
-  type mutable_flag (*IF_CURRENT = Asttypes.mutable_flag *) = Immutable | Mutable
+  type mutable_flag              = Asttypes.mutable_flag    = Immutable | Mutable
 
-  type virtual_flag (*IF_CURRENT = Asttypes.virtual_flag *) = Virtual | Concrete
+  type virtual_flag              = Asttypes.virtual_flag    = Virtual | Concrete
 
-  type override_flag (*IF_CURRENT = Asttypes.override_flag *) = Override | Fresh
+  type override_flag              = Asttypes.override_flag    = Override | Fresh
 
-  type closed_flag (*IF_CURRENT = Asttypes.closed_flag *) = Closed | Open
+  type closed_flag              = Asttypes.closed_flag    = Closed | Open
 
   type label = string
 
-  type arg_label (*IF_CURRENT = Asttypes.arg_label *) =
+  type arg_label              = Asttypes.arg_label    =
       Nolabel
     | Labelled of string (** [label:T -> ...] *)
     | Optional of string (** [?label:T -> ...] *)
@@ -36,12 +36,12 @@ module Asttypes = struct
     loc : Location.t;
   }
 
-  type variance (*IF_CURRENT = Asttypes.variance *) =
+  type variance              = Asttypes.variance    =
     | Covariant
     | Contravariant
     | NoVariance
 
-  type injectivity (*IF_CURRENT = Asttypes.injectivity *) =
+  type injectivity              = Asttypes.injectivity    =
     | Injective
     | NoInjectivity
 end
@@ -49,12 +49,12 @@ end
 module Parsetree = struct
   open Asttypes
 
-  type constant (*IF_CURRENT = Parsetree.constant *) = {
+  type constant              = Parsetree.constant    = {
     pconst_desc : constant_desc;
     pconst_loc : Location.t;
   }
 
-  and constant_desc (*IF_CURRENT = Parsetree.constant_desc *) =
+  and constant_desc              = Parsetree.constant_desc    =
     | Pconst_integer of string * char option
         (** Integer constants such as [3] [3l] [3L] [3n].
 
@@ -79,7 +79,7 @@ module Parsetree = struct
 
   (** {1 Extension points} *)
 
-  type attribute (*IF_CURRENT = Parsetree.attribute *) = {
+  type attribute              = Parsetree.attribute    = {
       attr_name : string loc;
       attr_payload : payload;
       attr_loc : Location.t;
@@ -98,7 +98,7 @@ module Parsetree = struct
 
   and attributes = attribute list
 
-  and payload (*IF_CURRENT = Parsetree.payload *) =
+  and payload              = Parsetree.payload    =
     | PStr of structure
     | PSig of signature  (** [: SIG] in an attribute or an extension point *)
     | PTyp of core_type  (** [: T] in an attribute or an extension point *)
@@ -108,7 +108,7 @@ module Parsetree = struct
   (** {1 Core language} *)
   (** {2 Type expressions} *)
 
-  and core_type (*IF_CURRENT = Parsetree.core_type *) =
+  and core_type              = Parsetree.core_type    =
       {
        ptyp_desc: core_type_desc;
        ptyp_loc: Location.t;
@@ -116,7 +116,7 @@ module Parsetree = struct
        ptyp_attributes: attributes;  (** [... [\@id1] [\@id2]] *)
       }
 
-  and core_type_desc (*IF_CURRENT = Parsetree.core_type_desc *) =
+  and core_type_desc              = Parsetree.core_type_desc    =
     | Ptyp_any  (** [_] *)
     | Ptyp_var of string  (** A type variable such as ['a] *)
     | Ptyp_arrow of arg_label * core_type * core_type
@@ -208,13 +208,13 @@ module Parsetree = struct
             represents [(module S with type t1 = T1 and ... and tn = Tn)].
          *)
 
-  and row_field (*IF_CURRENT = Parsetree.row_field *) = {
+  and row_field              = Parsetree.row_field    = {
     prf_desc : row_field_desc;
     prf_loc : Location.t;
     prf_attributes : attributes;
   }
 
-  and row_field_desc (*IF_CURRENT = Parsetree.row_field_desc *) =
+  and row_field_desc              = Parsetree.row_field_desc    =
     | Rtag of label loc * bool * core_type list
         (** [Rtag(`A, b, l)] represents:
              - [`A]                   when [b] is [true]  and [l] is [[]],
@@ -229,19 +229,19 @@ module Parsetree = struct
           *)
     | Rinherit of core_type  (** [[ | t ]] *)
 
-  and object_field (*IF_CURRENT = Parsetree.object_field *) = {
+  and object_field              = Parsetree.object_field    = {
     pof_desc : object_field_desc;
     pof_loc : Location.t;
     pof_attributes : attributes;
   }
 
-  and object_field_desc (*IF_CURRENT = Parsetree.object_field_desc *) =
+  and object_field_desc              = Parsetree.object_field_desc    =
     | Otag of label loc * core_type
     | Oinherit of core_type
 
   (** {2 Patterns} *)
 
-  and pattern (*IF_CURRENT = Parsetree.pattern *) =
+  and pattern              = Parsetree.pattern    =
       {
        ppat_desc: pattern_desc;
        ppat_loc: Location.t;
@@ -249,7 +249,7 @@ module Parsetree = struct
        ppat_attributes: attributes;  (** [... [\@id1] [\@id2]] *)
       }
 
-  and pattern_desc (*IF_CURRENT = Parsetree.pattern_desc *) =
+  and pattern_desc              = Parsetree.pattern_desc    =
     | Ppat_any  (** The pattern [_]. *)
     | Ppat_var of string loc  (** A variable pattern such as [x] *)
     | Ppat_alias of pattern * string loc
@@ -308,7 +308,7 @@ module Parsetree = struct
 
   (** {2 Value expressions} *)
 
-  and expression (*IF_CURRENT = Parsetree.expression *) =
+  and expression              = Parsetree.expression    =
       {
        pexp_desc: expression_desc;
        pexp_loc: Location.t;
@@ -316,7 +316,7 @@ module Parsetree = struct
        pexp_attributes: attributes;  (** [... [\@id1] [\@id2]] *)
       }
 
-  and expression_desc (*IF_CURRENT = Parsetree.expression_desc *) =
+  and expression_desc              = Parsetree.expression_desc    =
     | Pexp_ident of Longident.t loc
         (** Identifiers such as [x] and [M.x]
            *)
@@ -442,7 +442,7 @@ module Parsetree = struct
     | Pexp_extension of extension  (** [[%id]] *)
     | Pexp_unreachable  (** [.] *)
 
-  and case (*IF_CURRENT = Parsetree.case *) =
+  and case              = Parsetree.case    =
       {
        pc_lhs: pattern;
        pc_guard: expression option;
@@ -450,14 +450,14 @@ module Parsetree = struct
      }
   (** Values of type {!case} represents [(P -> E)] or [(P when E0 -> E)] *)
 
-  and letop (*IF_CURRENT = Parsetree.letop *) =
+  and letop              = Parsetree.letop    =
     {
       let_ : binding_op;
       ands : binding_op list;
       body : expression;
     }
 
-  and binding_op (*IF_CURRENT = Parsetree.binding_op *) =
+  and binding_op              = Parsetree.binding_op    =
     {
       pbop_op : string loc;
       pbop_pat : pattern;
@@ -465,7 +465,7 @@ module Parsetree = struct
       pbop_loc : Location.t;
     }
 
-  and function_param_desc (*IF_CURRENT = Parsetree.function_param_desc *) =
+  and function_param_desc              = Parsetree.function_param_desc    =
     | Pparam_val of arg_label * expression option * pattern
     (** [Pparam_val (lbl, exp0, P)] represents the parameter:
         - [P]
@@ -505,12 +505,12 @@ module Parsetree = struct
         variables [a], [b], and [c] in the source code.
     *)
 
-  and function_param (*IF_CURRENT = Parsetree.function_param *) =
+  and function_param              = Parsetree.function_param    =
     { pparam_loc : Location.t;
       pparam_desc : function_param_desc;
     }
 
-  and function_body (*IF_CURRENT = Parsetree.function_body *) =
+  and function_body              = Parsetree.function_body    =
     | Pfunction_body of expression
     | Pfunction_cases of case list * Location.t * attributes
     (** In [Pfunction_cases (_, loc, attrs)], the location extends from the
@@ -520,14 +520,14 @@ module Parsetree = struct
     *)
   (** See the comment on {{!expression_desc.Pexp_function}[Pexp_function]}. *)
 
-  and type_constraint (*IF_CURRENT = Parsetree.type_constraint *) =
+  and type_constraint              = Parsetree.type_constraint    =
     | Pconstraint of core_type
     | Pcoerce of core_type option * core_type
   (** See the comment on {{!expression_desc.Pexp_function}[Pexp_function]}. *)
 
   (** {2 Value descriptions} *)
 
-  and value_description (*IF_CURRENT = Parsetree.value_description *) =
+  and value_description              = Parsetree.value_description    =
       {
        pval_name: string loc;
        pval_type: core_type;
@@ -544,7 +544,7 @@ module Parsetree = struct
 
   (** {2 Type declarations} *)
 
-  and type_declaration (*IF_CURRENT = Parsetree.type_declaration *) =
+  and type_declaration              = Parsetree.type_declaration    =
       {
        ptype_name: string loc;
        ptype_params: (core_type * (variance * injectivity)) list;
@@ -583,13 +583,13 @@ module Parsetree = struct
                  and [manifest]  is [None].
   *)
 
-  and type_kind (*IF_CURRENT = Parsetree.type_kind *) =
+  and type_kind              = Parsetree.type_kind    =
     | Ptype_abstract
     | Ptype_variant of constructor_declaration list
     | Ptype_record of label_declaration list  (** Invariant: non-empty list *)
     | Ptype_open
 
-  and label_declaration (*IF_CURRENT = Parsetree.label_declaration *) =
+  and label_declaration              = Parsetree.label_declaration    =
       {
        pld_name: string loc;
        pld_mutable: mutable_flag;
@@ -608,7 +608,7 @@ module Parsetree = struct
      Note: [T] can be a {{!core_type_desc.Ptyp_poly}[Ptyp_poly]}.
   *)
 
-  and constructor_declaration (*IF_CURRENT = Parsetree.constructor_declaration *) =
+  and constructor_declaration              = Parsetree.constructor_declaration    =
       {
        pcd_name: string loc;
        pcd_vars: string loc list;
@@ -618,7 +618,7 @@ module Parsetree = struct
        pcd_attributes: attributes;  (** [C of ... [\@id1] [\@id2]] *)
       }
 
-  and constructor_arguments (*IF_CURRENT = Parsetree.constructor_arguments *) =
+  and constructor_arguments              = Parsetree.constructor_arguments    =
     | Pcstr_tuple of core_type list
     | Pcstr_record of label_declaration list
         (** Values of type {!constructor_declaration}
@@ -635,7 +635,7 @@ module Parsetree = struct
                                 and [args = Pcstr_record [...]].
   *)
 
-  and type_extension (*IF_CURRENT = Parsetree.type_extension *) =
+  and type_extension              = Parsetree.type_extension    =
       {
        ptyext_path: Longident.t loc;
        ptyext_params: (core_type * (variance * injectivity)) list;
@@ -649,7 +649,7 @@ module Parsetree = struct
      ([type t += ...]).
   *)
 
-  and extension_constructor (*IF_CURRENT = Parsetree.extension_constructor *) =
+  and extension_constructor              = Parsetree.extension_constructor    =
       {
        pext_name: string loc;
        pext_kind: extension_constructor_kind;
@@ -657,7 +657,7 @@ module Parsetree = struct
        pext_attributes: attributes;  (** [C of ... [\@id1] [\@id2]] *)
      }
 
-  and type_exception (*IF_CURRENT = Parsetree.type_exception *) =
+  and type_exception              = Parsetree.type_exception    =
     {
       ptyexn_constructor : extension_constructor;
       ptyexn_loc : Location.t;
@@ -665,7 +665,7 @@ module Parsetree = struct
     }
   (** Definition of a new exception ([exception E]). *)
 
-  and extension_constructor_kind (*IF_CURRENT = Parsetree.extension_constructor_kind *) =
+  and extension_constructor_kind              = Parsetree.extension_constructor_kind    =
     | Pext_decl of string loc list * constructor_arguments * core_type option
         (** [Pext_decl(existentials, c_args, t_opt)]
             describes a new extension constructor. It can be:
@@ -692,14 +692,14 @@ module Parsetree = struct
   (** {1 Class language} *)
   (** {2 Type expressions for the class language} *)
 
-  and class_type (*IF_CURRENT = Parsetree.class_type *) =
+  and class_type              = Parsetree.class_type    =
       {
        pcty_desc: class_type_desc;
        pcty_loc: Location.t;
        pcty_attributes: attributes;  (** [... [\@id1] [\@id2]] *)
       }
 
-  and class_type_desc (*IF_CURRENT = Parsetree.class_type_desc *) =
+  and class_type_desc              = Parsetree.class_type_desc    =
     | Pcty_constr of Longident.t loc * core_type list
         (** - [c]
               - [['a1, ..., 'an] c] *)
@@ -716,7 +716,7 @@ module Parsetree = struct
     | Pcty_extension of extension  (** [%id] *)
     | Pcty_open of open_description * class_type  (** [let open M in CT] *)
 
-  and class_signature (*IF_CURRENT = Parsetree.class_signature *) =
+  and class_signature              = Parsetree.class_signature    =
       {
        pcsig_self: core_type;
        pcsig_fields: class_type_field list;
@@ -727,14 +727,14 @@ module Parsetree = struct
                            is {{!core_type_desc.Ptyp_any}[Ptyp_any]}
   *)
 
-  and class_type_field (*IF_CURRENT = Parsetree.class_type_field *) =
+  and class_type_field              = Parsetree.class_type_field    =
       {
        pctf_desc: class_type_field_desc;
        pctf_loc: Location.t;
        pctf_attributes: attributes;  (** [... [\@\@id1] [\@\@id2]] *)
       }
 
-  and class_type_field_desc (*IF_CURRENT = Parsetree.class_type_field_desc *) =
+  and class_type_field_desc              = Parsetree.class_type_field_desc    =
     | Pctf_inherit of class_type  (** [inherit CT] *)
     | Pctf_val of (label loc * mutable_flag * virtual_flag * core_type)
         (** [val x: T] *)
@@ -747,7 +747,7 @@ module Parsetree = struct
     | Pctf_attribute of attribute  (** [[\@\@\@id]] *)
     | Pctf_extension of extension  (** [[%%id]] *)
 
-  and 'a class_infos (*IF_CURRENT = 'a Parsetree.class_infos *) =
+  and 'a class_infos              = 'a Parsetree.class_infos    =
       {
        pci_virt: virtual_flag;
        pci_params: (core_type * (variance * injectivity)) list;
@@ -770,14 +770,14 @@ module Parsetree = struct
 
   (** {2 Value expressions for the class language} *)
 
-  and class_expr (*IF_CURRENT = Parsetree.class_expr *) =
+  and class_expr              = Parsetree.class_expr    =
       {
        pcl_desc: class_expr_desc;
        pcl_loc: Location.t;
        pcl_attributes: attributes;  (** [... [\@id1] [\@id2]] *)
       }
 
-  and class_expr_desc (*IF_CURRENT = Parsetree.class_expr_desc *) =
+  and class_expr_desc              = Parsetree.class_expr_desc    =
     | Pcl_constr of Longident.t loc * core_type list
         (** [c] and [['a1, ..., 'an] c] *)
     | Pcl_structure of class_structure  (** [object ... end] *)
@@ -815,7 +815,7 @@ module Parsetree = struct
     | Pcl_extension of extension  (** [[%id]] *)
     | Pcl_open of open_description * class_expr  (** [let open M in CE] *)
 
-  and class_structure (*IF_CURRENT = Parsetree.class_structure *) =
+  and class_structure              = Parsetree.class_structure    =
       {
        pcstr_self: pattern;
        pcstr_fields: class_field list;
@@ -826,14 +826,14 @@ module Parsetree = struct
                            is {{!pattern_desc.Ppat_any}[Ppat_any]}
   *)
 
-  and class_field (*IF_CURRENT = Parsetree.class_field *) =
+  and class_field              = Parsetree.class_field    =
       {
        pcf_desc: class_field_desc;
        pcf_loc: Location.t;
        pcf_attributes: attributes;  (** [... [\@\@id1] [\@\@id2]] *)
       }
 
-  and class_field_desc (*IF_CURRENT = Parsetree.class_field_desc *) =
+  and class_field_desc              = Parsetree.class_field_desc    =
     | Pcf_inherit of override_flag * class_expr * string loc option
         (** [Pcf_inherit(flag, CE, s)] represents:
               - [inherit CE]
@@ -875,7 +875,7 @@ module Parsetree = struct
     | Pcf_attribute of attribute  (** [[\@\@\@id]] *)
     | Pcf_extension of extension  (** [[%%id]] *)
 
-  and class_field_kind (*IF_CURRENT = Parsetree.class_field_kind *) =
+  and class_field_kind              = Parsetree.class_field_kind    =
     | Cfk_virtual of core_type
     | Cfk_concrete of override_flag * expression
 
@@ -884,14 +884,14 @@ module Parsetree = struct
   (** {1 Module language} *)
   (** {2 Type expressions for the module language} *)
 
-  and module_type (*IF_CURRENT = Parsetree.module_type *) =
+  and module_type              = Parsetree.module_type    =
       {
        pmty_desc: module_type_desc;
        pmty_loc: Location.t;
        pmty_attributes: attributes;  (** [... [\@id1] [\@id2]] *)
       }
 
-  and module_type_desc (*IF_CURRENT = Parsetree.module_type_desc *) =
+  and module_type_desc              = Parsetree.module_type_desc    =
     | Pmty_ident of Longident.t loc  (** [Pmty_ident(S)] represents [S] *)
     | Pmty_signature of signature  (** [sig ... end] *)
     | Pmty_functor of functor_parameter * module_type
@@ -901,7 +901,7 @@ module Parsetree = struct
     | Pmty_extension of extension  (** [[%id]] *)
     | Pmty_alias of Longident.t loc  (** [(module M)] *)
 
-  and functor_parameter (*IF_CURRENT = Parsetree.functor_parameter *) =
+  and functor_parameter              = Parsetree.functor_parameter    =
     | Unit  (** [()] *)
     | Named of string option loc * module_type
         (** [Named(name, MT)] represents:
@@ -910,13 +910,13 @@ module Parsetree = struct
 
   and signature = signature_item list
 
-  and signature_item (*IF_CURRENT = Parsetree.signature_item *) =
+  and signature_item              = Parsetree.signature_item    =
       {
        psig_desc: signature_item_desc;
        psig_loc: Location.t;
       }
 
-  and signature_item_desc (*IF_CURRENT = Parsetree.signature_item_desc *) =
+  and signature_item_desc              = Parsetree.signature_item_desc    =
     | Psig_value of value_description
         (** - [val x: T]
               - [external x: T = "s1" ... "sn"]
@@ -944,7 +944,7 @@ module Parsetree = struct
     | Psig_attribute of attribute  (** [[\@\@\@id]] *)
     | Psig_extension of extension * attributes  (** [[%%id]] *)
 
-  and module_declaration (*IF_CURRENT = Parsetree.module_declaration *) =
+  and module_declaration              = Parsetree.module_declaration    =
       {
        pmd_name: string option loc;
        pmd_type: module_type;
@@ -953,7 +953,7 @@ module Parsetree = struct
       }
   (** Values of type [module_declaration] represents [S : MT] *)
 
-  and module_substitution (*IF_CURRENT = Parsetree.module_substitution *) =
+  and module_substitution              = Parsetree.module_substitution    =
       {
        pms_name: string loc;
        pms_manifest: Longident.t loc;
@@ -962,7 +962,7 @@ module Parsetree = struct
       }
   (** Values of type [module_substitution] represents [S := M] *)
 
-  and module_type_declaration (*IF_CURRENT = Parsetree.module_type_declaration *) =
+  and module_type_declaration              = Parsetree.module_type_declaration    =
       {
        pmtd_name: string loc;
        pmtd_type: module_type option;
@@ -975,7 +975,7 @@ module Parsetree = struct
        when {{!module_type_declaration.pmtd_type}[pmtd_type]} is [None].
   *)
 
-  and 'a open_infos (*IF_CURRENT = 'a Parsetree.open_infos *) =
+  and 'a open_infos              = 'a Parsetree.open_infos    =
       {
        popen_expr: 'a;
        popen_override: override_flag;
@@ -1001,7 +1001,7 @@ module Parsetree = struct
       - [open M(N).O]
       - [open struct ... end] *)
 
-  and 'a include_infos (*IF_CURRENT = 'a Parsetree.include_infos *) =
+  and 'a include_infos              = 'a Parsetree.include_infos    =
       {
        pincl_mod: 'a;
        pincl_loc: Location.t;
@@ -1014,7 +1014,7 @@ module Parsetree = struct
   and include_declaration = module_expr include_infos
   (** Values of type [include_declaration] represents [include ME] *)
 
-  and with_constraint (*IF_CURRENT = Parsetree.with_constraint *) =
+  and with_constraint              = Parsetree.with_constraint    =
     | Pwith_type of Longident.t loc * type_declaration
         (** [with type X.t = ...]
 
@@ -1033,14 +1033,14 @@ module Parsetree = struct
 
   (** {2 Value expressions for the module language} *)
 
-  and module_expr (*IF_CURRENT = Parsetree.module_expr *) =
+  and module_expr              = Parsetree.module_expr    =
       {
        pmod_desc: module_expr_desc;
        pmod_loc: Location.t;
        pmod_attributes: attributes;  (** [... [\@id1] [\@id2]] *)
       }
 
-  and module_expr_desc (*IF_CURRENT = Parsetree.module_expr_desc *) =
+  and module_expr_desc              = Parsetree.module_expr_desc    =
     | Pmod_ident of Longident.t loc  (** [X] *)
     | Pmod_structure of structure  (** [struct ... end] *)
     | Pmod_functor of functor_parameter * module_expr
@@ -1053,13 +1053,13 @@ module Parsetree = struct
 
   and structure = structure_item list
 
-  and structure_item (*IF_CURRENT = Parsetree.structure_item *) =
+  and structure_item              = Parsetree.structure_item    =
       {
        pstr_desc: structure_item_desc;
        pstr_loc: Location.t;
       }
 
-  and structure_item_desc (*IF_CURRENT = Parsetree.structure_item_desc *) =
+  and structure_item_desc              = Parsetree.structure_item_desc    =
     | Pstr_eval of expression * attributes  (** [E] *)
     | Pstr_value of rec_flag * value_binding list
         (** [Pstr_value(rec, [(P1, E1 ; ... ; (Pn, En))])] represents:
@@ -1090,7 +1090,7 @@ module Parsetree = struct
     | Pstr_attribute of attribute  (** [[\@\@\@id]] *)
     | Pstr_extension of extension * attributes  (** [[%%id]] *)
 
-  and value_constraint (*IF_CURRENT = Parsetree.value_constraint *) =
+  and value_constraint              = Parsetree.value_constraint    =
     | Pvc_constraint of {
         locally_abstract_univars:string loc list;
         typ:core_type;
@@ -1106,7 +1106,7 @@ module Parsetree = struct
        - [Pvc_coercion { ground=Some g; coercion }] represents [let x : g :> typ]
     *)
 
-  and value_binding (*IF_CURRENT = Parsetree.value_binding *) =
+  and value_binding              = Parsetree.value_binding    =
     {
       pvb_pat: pattern;
       pvb_expr: expression;
@@ -1115,7 +1115,7 @@ module Parsetree = struct
       pvb_loc: Location.t;
     }(** [let pat : type_constraint = exp] *)
 
-  and module_binding (*IF_CURRENT = Parsetree.module_binding *) =
+  and module_binding              = Parsetree.module_binding    =
       {
        pmb_name: string option loc;
        pmb_expr: module_expr;
@@ -1128,24 +1128,24 @@ module Parsetree = struct
 
   (** {2 Toplevel phrases} *)
 
-  type toplevel_phrase (*IF_CURRENT = Parsetree.toplevel_phrase *) =
+  type toplevel_phrase              = Parsetree.toplevel_phrase    =
     | Ptop_def of structure
     | Ptop_dir of toplevel_directive  (** [#use], [#load] ... *)
 
-  and toplevel_directive (*IF_CURRENT = Parsetree.toplevel_directive *) =
+  and toplevel_directive              = Parsetree.toplevel_directive    =
     {
       pdir_name: string loc;
       pdir_arg: directive_argument option;
       pdir_loc: Location.t;
     }
 
-  and directive_argument (*IF_CURRENT = Parsetree.directive_argument *) =
+  and directive_argument              = Parsetree.directive_argument    =
     {
       pdira_desc: directive_argument_desc;
       pdira_loc: Location.t;
     }
 
-  and directive_argument_desc (*IF_CURRENT = Parsetree.directive_argument_desc *) =
+  and directive_argument_desc              = Parsetree.directive_argument_desc    =
     | Pdir_string of string
     | Pdir_int of string * char option
     | Pdir_ident of Longident.t

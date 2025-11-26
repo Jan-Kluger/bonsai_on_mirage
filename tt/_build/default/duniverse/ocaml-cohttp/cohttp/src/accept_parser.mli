@@ -5,8 +5,16 @@ type token =
   | COMMA
   | EQUAL
   | EOI
-  | TOK of (string)
-  | QS of (string)
+  | TOK of (
+# 34 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
+        string
+# 12 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mli"
+)
+  | QS of (
+# 34 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
+        string
+# 17 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mli"
+)
 
 val media_ranges :
   (Lexing.lexbuf  -> token) -> Lexing.lexbuf -> (Accept_types.media_range * Accept_types.p list) Accept_types.qlist

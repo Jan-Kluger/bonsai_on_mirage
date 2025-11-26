@@ -5,10 +5,18 @@ type token =
   | COMMA
   | EQUAL
   | EOI
-  | TOK of (string)
-  | QS of (string)
+  | TOK of (
+# 34 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
+        string
+# 12 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+)
+  | QS of (
+# 34 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
+        string
+# 17 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+)
 
-open Parsing;;
+open Parsing
 let _ = parse_error;;
 # 20 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
   open Accept_types
@@ -22,7 +30,7 @@ let _ = parse_error;;
 
   let get_rest pl = List.fold_right
     (function Kv p -> fun l -> p::l | Q _ -> fun l -> l) pl []
-# 26 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 34 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
 let yytransl_const = [|
   257 (* STAR *);
   258 (* SLASH *);
@@ -123,7 +131,7 @@ let yyact = [|
     Obj.repr(
 # 43 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
                     ( Kv (_2, _4) )
-# 127 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 135 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'param))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : string) in
@@ -135,7 +143,7 @@ let yyact = [|
     with Failure _ -> raise Parsing.Parse_error
   else Kv (_2, _4)
 )
-# 139 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 147 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'param))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'param) in
@@ -143,13 +151,13 @@ let yyact = [|
     Obj.repr(
 # 51 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
                ( _1::_2 )
-# 147 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 155 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'params))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 52 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
   ( [] )
-# 153 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 161 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'params))
 ; (fun __caml_parser_env ->
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'params) in
@@ -158,7 +166,7 @@ let yyact = [|
                          (
   (get_q _4, (AnyMedia, get_rest _4))
 )
-# 162 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 170 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'media_range))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 3 : string) in
@@ -168,7 +176,7 @@ let yyact = [|
                         (
   (get_q _4, (AnyMediaSubtype (String.lowercase_ascii _1), get_rest _4))
 )
-# 172 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 180 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'media_range))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 3 : string) in
@@ -179,14 +187,14 @@ let yyact = [|
                        (
   (get_q _4, (MediaType (String.lowercase_ascii _1, String.lowercase_ascii _3), get_rest _4))
 )
-# 183 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 191 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'media_range))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'media_range) in
     Obj.repr(
 # 66 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
                   ( [_1] )
-# 190 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 198 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : (Accept_types.media_range * Accept_types.p list) Accept_types.qlist))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'media_range) in
@@ -194,13 +202,13 @@ let yyact = [|
     Obj.repr(
 # 67 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
                                  ( _1::_3 )
-# 198 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 206 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : (Accept_types.media_range * Accept_types.p list) Accept_types.qlist))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 68 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
       ( [] )
-# 204 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 212 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : (Accept_types.media_range * Accept_types.p list) Accept_types.qlist))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : string) in
@@ -208,21 +216,21 @@ let yyact = [|
     Obj.repr(
 # 71 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
              ( (get_q _2, Charset (String.lowercase_ascii _1)) )
-# 212 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 220 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'charset))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'params) in
     Obj.repr(
 # 72 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
               ( (get_q _2, AnyCharset) )
-# 219 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 227 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'charset))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'charset) in
     Obj.repr(
 # 75 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
               ( [_1] )
-# 226 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 234 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : Accept_types.charset Accept_types.qlist))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'charset) in
@@ -230,7 +238,7 @@ let yyact = [|
     Obj.repr(
 # 76 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
                          ( _1::_3 )
-# 234 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 242 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : Accept_types.charset Accept_types.qlist))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : string) in
@@ -246,21 +254,21 @@ let yyact = [|
     | enc -> Encoding enc
   )
 )
-# 250 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 258 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'encoding))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'params) in
     Obj.repr(
 # 88 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
               ( (get_q _2, AnyEncoding) )
-# 257 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 265 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'encoding))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'encoding) in
     Obj.repr(
 # 91 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
                ( [_1] )
-# 264 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 272 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : Accept_types.encoding Accept_types.qlist))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'encoding) in
@@ -268,13 +276,13 @@ let yyact = [|
     Obj.repr(
 # 92 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
                            ( _1::_3 )
-# 272 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 280 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : Accept_types.encoding Accept_types.qlist))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 93 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
       ( [] )
-# 278 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 286 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : Accept_types.encoding Accept_types.qlist))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : string) in
@@ -284,21 +292,21 @@ let yyact = [|
              (
   (get_q _2, Language (String.split_on_char '-' (String.lowercase_ascii _1)))
 )
-# 288 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 296 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'language))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'params) in
     Obj.repr(
 # 99 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
               ( (get_q _2, AnyLanguage) )
-# 295 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 303 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : 'language))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'language) in
     Obj.repr(
 # 102 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
                ( [_1] )
-# 302 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 310 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : Accept_types.language Accept_types.qlist))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'language) in
@@ -306,7 +314,7 @@ let yyact = [|
     Obj.repr(
 # 103 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.mly"
                            ( _1::_3 )
-# 310 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
+# 318 "duniverse/ocaml-cohttp/cohttp/src/accept_parser.ml"
                : Accept_types.language Accept_types.qlist))
 (* Entry media_ranges *)
 ; (fun __caml_parser_env -> raise (Parsing.YYexit (Parsing.peek_val __caml_parser_env 0)))

@@ -1,1 +1,1 @@
-duniverse/base/src/random_repr.ml: Array0 Lazy Stdlib
+duniverse/base/src/random_repr.ml: Array1 Stdlib
