@@ -3,7 +3,7 @@
 -include Makefile.user
 BUILD_DIR = ./
 MIRAGE_DIR = ./mirage
-UNIKERNEL_NAME = hello-macosx
+UNIKERNEL_NAME = hello-unix
 OPAM = opam
 
 all::

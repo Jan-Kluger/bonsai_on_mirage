@@ -1,84 +1,20 @@
 type token =
-  | UNDEF of (
-# 6 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * string 
-# 6 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | INCLUDE of (
-# 6 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * string 
-# 11 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | WARNING of (
-# 6 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * string 
-# 16 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | ERROR of (
-# 6 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * string 
-# 21 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | DEF of (
-# 7 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * string * (string * Cppo_types.shape) list 
-# 26 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | LINE of (
-# 8 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * string option * int 
-# 31 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | IFDEF of (
-# 9 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * Cppo_types.bool_expr 
-# 36 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | EXT of (
-# 10 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * string * string 
-# 41 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | ENDEF of (
-# 11 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 46 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | SCOPE of (
-# 11 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 51 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | ENDSCOPE of (
-# 11 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 56 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | IF of (
-# 11 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 61 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | ELIF of (
-# 11 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 66 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | ELSE of (
-# 11 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 71 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | ENDIF of (
-# 11 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 76 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | ENDTEST of (
-# 11 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 81 "duniverse/cppo/src/cppo_parser.ml"
-)
+  | UNDEF of ( Cppo_types.loc * string )
+  | INCLUDE of ( Cppo_types.loc * string )
+  | WARNING of ( Cppo_types.loc * string )
+  | ERROR of ( Cppo_types.loc * string )
+  | DEF of ( Cppo_types.loc * string * (string * Cppo_types.shape) list )
+  | LINE of ( Cppo_types.loc * string option * int )
+  | IFDEF of ( Cppo_types.loc * Cppo_types.bool_expr )
+  | EXT of ( Cppo_types.loc * string * string )
+  | ENDEF of ( Cppo_types.loc )
+  | SCOPE of ( Cppo_types.loc )
+  | ENDSCOPE of ( Cppo_types.loc )
+  | IF of ( Cppo_types.loc )
+  | ELIF of ( Cppo_types.loc )
+  | ELSE of ( Cppo_types.loc )
+  | ENDIF of ( Cppo_types.loc )
+  | ENDTEST of ( Cppo_types.loc )
   | TRUE
   | FALSE
   | DEFINED
@@ -101,68 +37,24 @@ type token =
   | LAND
   | LOR
   | LXOR
-  | OP_PAREN of (
-# 16 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 108 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | SLASH of (
-# 16 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 113 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | MOD of (
-# 16 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 118 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | INT of (
-# 17 "duniverse/cppo/src/cppo_parser.mly"
-         int64 
-# 123 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | CL_PAREN of (
-# 21 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 128 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | COMMA of (
-# 21 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 133 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | CURRENT_LINE of (
-# 21 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 138 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | CURRENT_FILE of (
-# 21 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc 
-# 143 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | IDENT of (
-# 22 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * string 
-# 148 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | FUNIDENT of (
-# 22 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * string 
-# 153 "duniverse/cppo/src/cppo_parser.ml"
-)
-  | TEXT of (
-# 23 "duniverse/cppo/src/cppo_parser.mly"
-         Cppo_types.loc * bool * string 
-# 158 "duniverse/cppo/src/cppo_parser.ml"
-)
+  | OP_PAREN of ( Cppo_types.loc )
+  | SLASH of ( Cppo_types.loc )
+  | MOD of ( Cppo_types.loc )
+  | INT of ( int64 )
+  | CL_PAREN of ( Cppo_types.loc )
+  | COMMA of ( Cppo_types.loc )
+  | CURRENT_LINE of ( Cppo_types.loc )
+  | CURRENT_FILE of ( Cppo_types.loc )
+  | IDENT of ( Cppo_types.loc * string )
+  | FUNIDENT of ( Cppo_types.loc * string )
+  | TEXT of ( Cppo_types.loc * bool * string )
   | EOF
 
-open Parsing
+open Parsing;;
 let _ = parse_error;;
 # 2 "duniverse/cppo/src/cppo_parser.mly"
   open Cppo_types
-# 166 "duniverse/cppo/src/cppo_parser.ml"
+# 58 "duniverse/cppo/src/cppo_parser.ml"
 let yytransl_const = [|
   273 (* TRUE *);
   274 (* FALSE *);
@@ -483,13 +375,13 @@ let yyact = [|
     Obj.repr(
 # 43 "duniverse/cppo/src/cppo_parser.mly"
              ( _1 :: _2 )
-# 487 "duniverse/cppo/src/cppo_parser.ml"
+# 379 "duniverse/cppo/src/cppo_parser.ml"
                :  Cppo_types.node list ))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 44 "duniverse/cppo/src/cppo_parser.mly"
              ( [] )
-# 493 "duniverse/cppo/src/cppo_parser.ml"
+# 385 "duniverse/cppo/src/cppo_parser.ml"
                :  Cppo_types.node list ))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'unode) in
@@ -497,13 +389,13 @@ let yyact = [|
     Obj.repr(
 # 48 "duniverse/cppo/src/cppo_parser.mly"
                      ( _1 :: _2 )
-# 501 "duniverse/cppo/src/cppo_parser.ml"
+# 393 "duniverse/cppo/src/cppo_parser.ml"
                : 'unode_list0))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 49 "duniverse/cppo/src/cppo_parser.mly"
                      ( [] )
-# 507 "duniverse/cppo/src/cppo_parser.ml"
+# 399 "duniverse/cppo/src/cppo_parser.ml"
                : 'unode_list0))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'unode_list0) in
@@ -513,7 +405,7 @@ let yyact = [|
       and pos2 = Parsing.symbol_end_pos() in
       let loc = (pos1, pos2) in
       (loc, _1) )
-# 517 "duniverse/cppo/src/cppo_parser.ml"
+# 409 "duniverse/cppo/src/cppo_parser.ml"
                : 'body))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'pnode) in
@@ -521,13 +413,13 @@ let yyact = [|
     Obj.repr(
 # 60 "duniverse/cppo/src/cppo_parser.mly"
                      ( _1 :: _2 )
-# 525 "duniverse/cppo/src/cppo_parser.ml"
+# 417 "duniverse/cppo/src/cppo_parser.ml"
                : 'pnode_list0))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 61 "duniverse/cppo/src/cppo_parser.mly"
                      ( [] )
-# 531 "duniverse/cppo/src/cppo_parser.ml"
+# 423 "duniverse/cppo/src/cppo_parser.ml"
                : 'pnode_list0))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'pnode_list0) in
@@ -537,42 +429,42 @@ let yyact = [|
                        and pos2 = Parsing.symbol_end_pos() in
                        let loc = (pos1, pos2) in
                        `Seq (loc, _1) )
-# 541 "duniverse/cppo/src/cppo_parser.ml"
+# 433 "duniverse/cppo/src/cppo_parser.ml"
                : 'actual))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'node) in
     Obj.repr(
 # 73 "duniverse/cppo/src/cppo_parser.mly"
                 ( _1 )
-# 548 "duniverse/cppo/src/cppo_parser.ml"
+# 440 "duniverse/cppo/src/cppo_parser.ml"
                : 'unode))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc ) in
     Obj.repr(
 # 74 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Text (_1, false, "(") )
-# 555 "duniverse/cppo/src/cppo_parser.ml"
+# 447 "duniverse/cppo/src/cppo_parser.ml"
                : 'unode))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc ) in
     Obj.repr(
 # 75 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Text (_1, false, ")") )
-# 562 "duniverse/cppo/src/cppo_parser.ml"
+# 454 "duniverse/cppo/src/cppo_parser.ml"
                : 'unode))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc ) in
     Obj.repr(
 # 76 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Text (_1, false, ",") )
-# 569 "duniverse/cppo/src/cppo_parser.ml"
+# 461 "duniverse/cppo/src/cppo_parser.ml"
                : 'unode))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'node) in
     Obj.repr(
 # 81 "duniverse/cppo/src/cppo_parser.mly"
                 ( _1 )
-# 576 "duniverse/cppo/src/cppo_parser.ml"
+# 468 "duniverse/cppo/src/cppo_parser.ml"
                : 'pnode))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 :  Cppo_types.loc ) in
@@ -590,14 +482,14 @@ let yyact = [|
                   and _, pos2 = _3 in
                   let loc = (pos1, pos2) in
                   `Seq (loc, nodes) )
-# 594 "duniverse/cppo/src/cppo_parser.ml"
+# 486 "duniverse/cppo/src/cppo_parser.ml"
                : 'pnode))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * bool * string ) in
     Obj.repr(
 # 97 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Text _1 )
-# 601 "duniverse/cppo/src/cppo_parser.ml"
+# 493 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * string ) in
@@ -605,7 +497,7 @@ let yyact = [|
 # 99 "duniverse/cppo/src/cppo_parser.mly"
                 ( let loc, name = _1 in
                   `Ident (loc, name, []) )
-# 609 "duniverse/cppo/src/cppo_parser.ml"
+# 501 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 :  Cppo_types.loc * string ) in
@@ -622,28 +514,28 @@ let yyact = [|
                   let _, pos2 = _3 in
                   assert (_2 <> []);
                   `Ident ((pos1, pos2), name, _2) )
-# 626 "duniverse/cppo/src/cppo_parser.ml"
+# 518 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 :  Cppo_types.loc * string ) in
     Obj.repr(
 # 113 "duniverse/cppo/src/cppo_parser.mly"
                 ( error (fst _1) "Invalid macro application" )
-# 633 "duniverse/cppo/src/cppo_parser.ml"
+# 525 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc ) in
     Obj.repr(
 # 115 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Current_line _1 )
-# 640 "duniverse/cppo/src/cppo_parser.ml"
+# 532 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc ) in
     Obj.repr(
 # 116 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Current_file _1 )
-# 647 "duniverse/cppo/src/cppo_parser.ml"
+# 539 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 :  Cppo_types.loc * string * (string * Cppo_types.shape) list ) in
@@ -663,7 +555,7 @@ let yyact = [|
                   let body = `Seq (loc, body) in
                   let _, pos2 = _3 in
                   `Def ((pos1, pos2), name, formals, body) )
-# 667 "duniverse/cppo/src/cppo_parser.ml"
+# 559 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 :  Cppo_types.loc * string * (string * Cppo_types.shape) list ) in
@@ -672,7 +564,7 @@ let yyact = [|
 # 133 "duniverse/cppo/src/cppo_parser.mly"
                 ( let loc, _name, _formals = _1 in
                   error loc "This #def is never closed: perhaps #enddef is missing" )
-# 676 "duniverse/cppo/src/cppo_parser.ml"
+# 568 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 :  Cppo_types.loc ) in
@@ -682,7 +574,7 @@ let yyact = [|
 # 139 "duniverse/cppo/src/cppo_parser.mly"
                 ( let body = `Seq _2 in
                   `Scope body )
-# 686 "duniverse/cppo/src/cppo_parser.ml"
+# 578 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 :  Cppo_types.loc ) in
@@ -691,42 +583,42 @@ let yyact = [|
 # 143 "duniverse/cppo/src/cppo_parser.mly"
                 ( let loc = _1 in
                   error loc "This #scope is never closed: perhaps #endscope is missing" )
-# 695 "duniverse/cppo/src/cppo_parser.ml"
+# 587 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * string ) in
     Obj.repr(
 # 149 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Undef _1 )
-# 702 "duniverse/cppo/src/cppo_parser.ml"
+# 594 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * string ) in
     Obj.repr(
 # 151 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Warning _1 )
-# 709 "duniverse/cppo/src/cppo_parser.ml"
+# 601 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * string ) in
     Obj.repr(
 # 153 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Error _1 )
-# 716 "duniverse/cppo/src/cppo_parser.ml"
+# 608 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * string ) in
     Obj.repr(
 # 156 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Include _1 )
-# 723 "duniverse/cppo/src/cppo_parser.ml"
+# 615 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * string * string ) in
     Obj.repr(
 # 159 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Ext _1 )
-# 730 "duniverse/cppo/src/cppo_parser.ml"
+# 622 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 4 :  Cppo_types.loc ) in
@@ -749,7 +641,7 @@ let yyact = [|
                   in
                   `Cond (loc, test, if_true, if_false)
                 )
-# 753 "duniverse/cppo/src/cppo_parser.ml"
+# 645 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 4 :  Cppo_types.loc ) in
@@ -760,7 +652,7 @@ let yyact = [|
 # 177 "duniverse/cppo/src/cppo_parser.mly"
                 ( (* BUG? ocamlyacc fails to reduce that rule but not menhir *)
                   error _1 "missing #endif" )
-# 764 "duniverse/cppo/src/cppo_parser.ml"
+# 656 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 3 :  Cppo_types.loc * Cppo_types.bool_expr ) in
@@ -781,7 +673,7 @@ let yyact = [|
                   in
                   `Cond (loc, test, if_true, if_false)
                 )
-# 785 "duniverse/cppo/src/cppo_parser.ml"
+# 677 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 3 :  Cppo_types.loc * Cppo_types.bool_expr ) in
@@ -790,14 +682,14 @@ let yyact = [|
     Obj.repr(
 # 195 "duniverse/cppo/src/cppo_parser.mly"
                 ( error (fst _1) "missing #endif" )
-# 794 "duniverse/cppo/src/cppo_parser.ml"
+# 686 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * string option * int ) in
     Obj.repr(
 # 197 "duniverse/cppo/src/cppo_parser.mly"
                 ( `Line _1 )
-# 801 "duniverse/cppo/src/cppo_parser.ml"
+# 693 "duniverse/cppo/src/cppo_parser.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 3 :  Cppo_types.loc ) in
@@ -809,7 +701,7 @@ let yyact = [|
                    ( let pos1, _ = _1 in
                      let pos2 = Parsing.rhs_end_pos 4 in
                      ((pos1, pos2), _2, _3) :: _4 )
-# 813 "duniverse/cppo/src/cppo_parser.ml"
+# 705 "duniverse/cppo/src/cppo_parser.ml"
                : 'elif_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 :  Cppo_types.loc ) in
@@ -819,13 +711,13 @@ let yyact = [|
                    ( let pos1, _ = _1 in
                      let pos2 = Parsing.rhs_end_pos 2 in
                      [ ((pos1, pos2), `True, _2) ] )
-# 823 "duniverse/cppo/src/cppo_parser.ml"
+# 715 "duniverse/cppo/src/cppo_parser.ml"
                : 'elif_list))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 210 "duniverse/cppo/src/cppo_parser.mly"
                    ( [] )
-# 829 "duniverse/cppo/src/cppo_parser.ml"
+# 721 "duniverse/cppo/src/cppo_parser.ml"
                : 'elif_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'actual) in
@@ -834,14 +726,14 @@ let yyact = [|
     Obj.repr(
 # 214 "duniverse/cppo/src/cppo_parser.mly"
                         ( _1 :: _3  )
-# 838 "duniverse/cppo/src/cppo_parser.ml"
+# 730 "duniverse/cppo/src/cppo_parser.ml"
                : 'actuals1))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'actual) in
     Obj.repr(
 # 215 "duniverse/cppo/src/cppo_parser.mly"
                         ( [ _1 ] )
-# 845 "duniverse/cppo/src/cppo_parser.ml"
+# 737 "duniverse/cppo/src/cppo_parser.ml"
                : 'actuals1))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'pnode) in
@@ -849,7 +741,7 @@ let yyact = [|
     Obj.repr(
 # 219 "duniverse/cppo/src/cppo_parser.mly"
                                ( _1 :: _2 )
-# 853 "duniverse/cppo/src/cppo_parser.ml"
+# 745 "duniverse/cppo/src/cppo_parser.ml"
                : 'pnode_or_comma_list0))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 :  Cppo_types.loc ) in
@@ -857,13 +749,13 @@ let yyact = [|
     Obj.repr(
 # 220 "duniverse/cppo/src/cppo_parser.mly"
                                ( `Text (_1, false, ",") :: _2 )
-# 861 "duniverse/cppo/src/cppo_parser.ml"
+# 753 "duniverse/cppo/src/cppo_parser.ml"
                : 'pnode_or_comma_list0))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 221 "duniverse/cppo/src/cppo_parser.mly"
                                ( [] )
-# 867 "duniverse/cppo/src/cppo_parser.ml"
+# 759 "duniverse/cppo/src/cppo_parser.ml"
                : 'pnode_or_comma_list0))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'bexpr) in
@@ -871,26 +763,26 @@ let yyact = [|
     Obj.repr(
 # 225 "duniverse/cppo/src/cppo_parser.mly"
                 ( _1 )
-# 875 "duniverse/cppo/src/cppo_parser.ml"
+# 767 "duniverse/cppo/src/cppo_parser.ml"
                : 'test))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 230 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `True )
-# 881 "duniverse/cppo/src/cppo_parser.ml"
+# 773 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 231 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `False )
-# 887 "duniverse/cppo/src/cppo_parser.ml"
+# 779 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * string ) in
     Obj.repr(
 # 232 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `Defined (snd _2) )
-# 894 "duniverse/cppo/src/cppo_parser.ml"
+# 786 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 :  Cppo_types.loc ) in
@@ -899,14 +791,14 @@ let yyact = [|
     Obj.repr(
 # 233 "duniverse/cppo/src/cppo_parser.mly"
                                     ( _2 )
-# 903 "duniverse/cppo/src/cppo_parser.ml"
+# 795 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'bexpr) in
     Obj.repr(
 # 234 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `Not _2 )
-# 910 "duniverse/cppo/src/cppo_parser.ml"
+# 802 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'bexpr) in
@@ -914,7 +806,7 @@ let yyact = [|
     Obj.repr(
 # 235 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `And (_1, _3) )
-# 918 "duniverse/cppo/src/cppo_parser.ml"
+# 810 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'bexpr) in
@@ -922,7 +814,7 @@ let yyact = [|
     Obj.repr(
 # 236 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `Or (_1, _3) )
-# 926 "duniverse/cppo/src/cppo_parser.ml"
+# 818 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -930,7 +822,7 @@ let yyact = [|
     Obj.repr(
 # 237 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `Eq (_1, _3) )
-# 934 "duniverse/cppo/src/cppo_parser.ml"
+# 826 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -938,7 +830,7 @@ let yyact = [|
     Obj.repr(
 # 238 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `Lt (_1, _3) )
-# 942 "duniverse/cppo/src/cppo_parser.ml"
+# 834 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -946,7 +838,7 @@ let yyact = [|
     Obj.repr(
 # 239 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `Gt (_1, _3) )
-# 950 "duniverse/cppo/src/cppo_parser.ml"
+# 842 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -954,7 +846,7 @@ let yyact = [|
     Obj.repr(
 # 240 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `Not (`Eq (_1, _3)) )
-# 958 "duniverse/cppo/src/cppo_parser.ml"
+# 850 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -962,7 +854,7 @@ let yyact = [|
     Obj.repr(
 # 241 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `Not (`Gt (_1, _3)) )
-# 966 "duniverse/cppo/src/cppo_parser.ml"
+# 858 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -970,21 +862,21 @@ let yyact = [|
     Obj.repr(
 # 242 "duniverse/cppo/src/cppo_parser.mly"
                                     ( `Not (`Lt (_1, _3)) )
-# 974 "duniverse/cppo/src/cppo_parser.ml"
+# 866 "duniverse/cppo/src/cppo_parser.ml"
                : 'bexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  int64 ) in
     Obj.repr(
 # 247 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Int _1 )
-# 981 "duniverse/cppo/src/cppo_parser.ml"
+# 873 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 :  Cppo_types.loc * string ) in
     Obj.repr(
 # 248 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Ident _1 )
-# 988 "duniverse/cppo/src/cppo_parser.ml"
+# 880 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 :  Cppo_types.loc ) in
@@ -999,7 +891,7 @@ let yyact = [|
                                  let _, pos2 = _3 in
                                  `Tuple ((pos1, pos2), l)
                              )
-# 1003 "duniverse/cppo/src/cppo_parser.ml"
+# 895 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1007,7 +899,7 @@ let yyact = [|
     Obj.repr(
 # 257 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Add (_1, _3) )
-# 1011 "duniverse/cppo/src/cppo_parser.ml"
+# 903 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1015,7 +907,7 @@ let yyact = [|
     Obj.repr(
 # 258 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Sub (_1, _3) )
-# 1019 "duniverse/cppo/src/cppo_parser.ml"
+# 911 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1023,7 +915,7 @@ let yyact = [|
     Obj.repr(
 # 259 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Mul (_1, _3) )
-# 1027 "duniverse/cppo/src/cppo_parser.ml"
+# 919 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1032,7 +924,7 @@ let yyact = [|
     Obj.repr(
 # 260 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Div (_2, _1, _3) )
-# 1036 "duniverse/cppo/src/cppo_parser.ml"
+# 928 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1041,7 +933,7 @@ let yyact = [|
     Obj.repr(
 # 261 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Mod (_2, _1, _3) )
-# 1045 "duniverse/cppo/src/cppo_parser.ml"
+# 937 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1049,7 +941,7 @@ let yyact = [|
     Obj.repr(
 # 262 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Lsl (_1, _3) )
-# 1053 "duniverse/cppo/src/cppo_parser.ml"
+# 945 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1057,7 +949,7 @@ let yyact = [|
     Obj.repr(
 # 263 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Lsr (_1, _3) )
-# 1061 "duniverse/cppo/src/cppo_parser.ml"
+# 953 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1065,7 +957,7 @@ let yyact = [|
     Obj.repr(
 # 264 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Asr (_1, _3) )
-# 1069 "duniverse/cppo/src/cppo_parser.ml"
+# 961 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1073,7 +965,7 @@ let yyact = [|
     Obj.repr(
 # 265 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Land (_1, _3) )
-# 1077 "duniverse/cppo/src/cppo_parser.ml"
+# 969 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1081,7 +973,7 @@ let yyact = [|
     Obj.repr(
 # 266 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Lor (_1, _3) )
-# 1085 "duniverse/cppo/src/cppo_parser.ml"
+# 977 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1089,21 +981,21 @@ let yyact = [|
     Obj.repr(
 # 267 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Lxor (_1, _3) )
-# 1093 "duniverse/cppo/src/cppo_parser.ml"
+# 985 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'aexpr) in
     Obj.repr(
 # 268 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Lnot _2 )
-# 1100 "duniverse/cppo/src/cppo_parser.ml"
+# 992 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'aexpr) in
     Obj.repr(
 # 269 "duniverse/cppo/src/cppo_parser.mly"
                              ( `Neg _2 )
-# 1107 "duniverse/cppo/src/cppo_parser.ml"
+# 999 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'aexpr) in
@@ -1112,14 +1004,14 @@ let yyact = [|
     Obj.repr(
 # 273 "duniverse/cppo/src/cppo_parser.mly"
                              ( _1 :: _3 )
-# 1116 "duniverse/cppo/src/cppo_parser.ml"
+# 1008 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr_list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'aexpr) in
     Obj.repr(
 # 274 "duniverse/cppo/src/cppo_parser.mly"
                              ( [_1] )
-# 1123 "duniverse/cppo/src/cppo_parser.ml"
+# 1015 "duniverse/cppo/src/cppo_parser.ml"
                : 'aexpr_list))
 (* Entry main *)
 ; (fun __caml_parser_env -> raise (Parsing.YYexit (Parsing.peek_val __caml_parser_env 0)))

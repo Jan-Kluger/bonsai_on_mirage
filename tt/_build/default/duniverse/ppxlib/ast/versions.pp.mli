@@ -157,7 +157,7 @@ module OCaml_503 : OCaml_version with module Ast = Astlib.Ast_503
 (*$*)
 
 (* An alias to the current compiler version *)
-module OCaml_current = OCaml_502          
+module OCaml_current = OCaml_414          
 
 (* The list of all supported versions *)
 val all_versions : (module OCaml_version) list

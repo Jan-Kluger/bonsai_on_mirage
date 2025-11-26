@@ -1,3 +1,4 @@
+base__Array0
 base__Bool0
 base__Char0
 base__Globalize
@@ -6,10 +7,14 @@ base__Hash_intf
 base__Import
 base__Import0
 base__Int0
+base__Lazy
+base__Monad
+base__Monad_intf
 base__Poly0
 base__Ppx_compare_lib
 base__Ppx_hash_lib
 base__Printf
 base__Random_repr
 base__Sexp
+base__Sys0
 base__Word_size
