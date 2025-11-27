@@ -95,6 +95,6 @@ let apply_keyword_edition ~cli () =
     | None, Some (s, _) | Some _, Some (s, true) -> Some s
     | _ -> cli
   in
-                    let () = if Option.is_some keyword_edition then Clflags.keyword_edition := keyword_edition in  
-  (*IF_NOT_AT_LEAST 503 let () = ignore keyword_edition in*)
+  (*IF_AT_LEAST 503 let () = if Option.is_some keyword_edition then Clflags.keyword_edition := keyword_edition in*)
+                        let () = ignore keyword_edition in  
   ()

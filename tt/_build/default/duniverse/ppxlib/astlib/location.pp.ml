@@ -22,14 +22,14 @@ module Error = struct
   | Report_alert_as_error of string
 
   type location_msg =
-                      Ocaml_common.Format_doc.t loc   
-    (*IF_NOT_AT_LEAST 503 (Format.formatter -> unit) loc *)
+    (*IF_AT_LEAST 503 Ocaml_common.Format_doc.t loc *)
+                          (Format.formatter -> unit) loc   
 
   type location_report = Ocaml_common.Location.report = {
     kind : location_report_kind;
     main : location_msg;
     sub : location_msg list;
-                      footnote: Format_doc.t option;   
+    (*IF_AT_LEAST 503 footnote: Format_doc.t option; *)
   }
 
   type t = Ocaml_common.Location.error
@@ -40,8 +40,8 @@ module Error = struct
     | _ -> false
 
   let string_of_location_msg (msg : location_msg) =
-                       Format.asprintf "%a" Ocaml_common.Format_doc.Doc.format msg.txt   
-     (*IF_NOT_AT_LEAST 503 Format.asprintf "%t" msg.txt *)
+     (*IF_AT_LEAST 503 Format.asprintf "%a" Ocaml_common.Format_doc.Doc.format msg.txt *)
+                           Format.asprintf "%t" msg.txt   
 
   let main_msg { main; _ } =
     { txt = string_of_location_msg main; loc = main.loc }
@@ -57,20 +57,20 @@ module Error = struct
     | None | Some `Already_displayed -> None
 
   let set_main_msg error msg =
-                      let txt = Ocaml_common.Format_doc.Doc.msg "%s" msg in   
-    (*IF_NOT_AT_LEAST 503 let txt ppf = Format.pp_print_string ppf msg in *)
+    (*IF_AT_LEAST 503 let txt = Ocaml_common.Format_doc.Doc.msg "%s" msg in *)
+                          let txt ppf = Format.pp_print_string ppf msg in   
     let main = { error.main with txt } in
     { error with main }
 
   let make ~sub { loc; txt } =
-                      let mk_txt x = Ocaml_common.Format_doc.Doc.msg "%s" x in   
-    (*IF_NOT_AT_LEAST 503 let mk_txt x ppf = Format.pp_print_string ppf x in *)
+    (*IF_AT_LEAST 503 let mk_txt x = Ocaml_common.Format_doc.Doc.msg "%s" x in *)
+                          let mk_txt x ppf = Format.pp_print_string ppf x in   
     let mk loc x = { loc; txt = mk_txt x } in
     {
       kind = Report_error;
       main = mk loc txt;
       sub = List.map (fun { loc; txt } -> mk loc txt) sub;
-                        footnote = None;   
+      (*IF_AT_LEAST 503 footnote = None; *)
     }
 
   let set_main_loc error loc =
@@ -81,5 +81,5 @@ end
 let raise_errorf ?loc msg =
   (* Update from [kasprintf] to [kdprintf] + [Format_doc.deprecated_printer]
      when ocaml lower bound is 4.08+ *)
-                    Format.kdprintf (fun pr -> raise_errorf ?loc "%t" (Format_doc.deprecated_printer pr)) msg   
-  (*IF_NOT_AT_LEAST 503 raise_errorf ?loc msg *)
+  (*IF_AT_LEAST 503 Format.kdprintf (fun pr -> raise_errorf ?loc "%t" (Format_doc.deprecated_printer pr)) msg *)
+                        raise_errorf ?loc msg   

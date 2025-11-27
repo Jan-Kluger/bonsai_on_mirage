@@ -694,7 +694,7 @@ include Register_migration(OCaml_502)(OCaml_503)
     (Astlib.Migrate_502_503)(Astlib.Migrate_503_502)
 (*$*)
 
-module OCaml_current = OCaml_503          
+module OCaml_current = OCaml_502          
 
 module Find_version = struct
   type t = Impl of (module OCaml_version) | Intf of (module OCaml_version) | Unknown
