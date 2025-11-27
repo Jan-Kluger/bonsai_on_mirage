@@ -56,7 +56,7 @@ let view ~current_modal ~set_modal =
                     ]
                 ]
             ]
-        ]
+               ]
     ; (* Section 3: Projects *)
       div ~attrs:[ class_ "projects-section" ]
         [ div ~attrs:[ class_ "container" ]
@@ -71,8 +71,8 @@ let view ~current_modal ~set_modal =
                 ; div ~attrs:[ class_ "project-card"; on_click (fun _ -> open_modal Project4) ]
                     [ txt "Project 4" ]
                 ]
-            ]
-        ]
+               ]
+           ]
     ; (* Section 4: Experience *)
       div ~attrs:[ class_ "experience-section" ]
         [ div ~attrs:[ class_ "container" ]
@@ -90,8 +90,8 @@ let view ~current_modal ~set_modal =
                                nisi ut aliquip ex ea commodo consequat." ]
                     ]
                 ]
-            ]
-        ]
+                   ]
+               ]
     ; (* Modal overlay *)
       div ~attrs:[ class_ (if modal_is_open then "modal-overlay active" else "modal-overlay"); on_click close_modal ]
         [ div ~attrs:[ class_ (if modal_is_open then "modal-card active" else "modal-card"); on_click (fun _ -> Vdom.Effect.Stop_propagation) ]
@@ -134,9 +134,9 @@ let view ~current_modal ~set_modal =
                 ; p [ txt "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis \
                             praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias \
                             excepturi sint occaecati cupiditate non provident." ]
-                ]
-            ]
-        ]
+                   ]
+               ]
+           ]
     ]
 
 let app graph =

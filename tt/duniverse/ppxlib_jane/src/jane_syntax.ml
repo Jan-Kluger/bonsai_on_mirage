@@ -393,10 +393,10 @@ end = struct
              %s"
             n
             (Format.asprintf "%a"
-               (Format.pp_print_list
-                  (Format.pp_print_option
-                     ~none:(fun ppf () -> Format.fprintf ppf "None")
-                     Jkinds_pprint.jkind_annotation))
+            (Format.pp_print_list
+               (Format.pp_print_option
+                  ~none:(fun ppf () -> Format.fprintf ppf "None")
+                  Jkinds_pprint.jkind_annotation))
                jkinds)
       ;;
 
@@ -1583,9 +1583,9 @@ module Layouts = struct
           ~loc
           "Layout extension does not understand these attribute names:@;[%s]"
           (Format.asprintf "%a"
-             (Format.pp_print_list
-                ~pp_sep:(fun ppf () -> Format.fprintf ppf ";@ ")
-                Format.pp_print_text)
+          (Format.pp_print_list
+             ~pp_sep:(fun ppf () -> Format.fprintf ppf ";@ ")
+             Format.pp_print_text)
              names)
       | No_integer_suffix ->
         Location.errorf

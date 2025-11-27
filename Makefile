@@ -19,11 +19,13 @@ frontend: $(STATIC_DIR)/index.html
 	@cd $(FRONTEND_DIR) && dune clean && dune build $(JS_IN)
 	@mkdir -p $(STATIC_DIR)
 	@cp $(JS_BUILT) $(STATIC_DIR)/main.bc.js
+	@cp -r $(FRONTEND_DIR)/assets/* $(STATIC_DIR)/ 2>/dev/null || true
 	@echo "frontend built & copied to $(STATIC_DIR)"
 
 $(STATIC_DIR)/index.html: $(FRONTEND_DIR)/index.html
 	@mkdir -p $(STATIC_DIR)
 	@cp $< $@
+	@cp -r $(FRONTEND_DIR)/assets/* $(STATIC_DIR)/ 2>/dev/null || true
 	@echo "copied index to $(STATIC_DIR)"
 
 # ---------- BACKEND ----------
