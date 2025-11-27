@@ -1,90 +1,111 @@
 open Bonsai_web
 
-type page = Home | Project1
+type page = Home | Project1 | Project2 | Project3 | Project4
 
 let home_page ~go_to =
   let open Vdom.Node in
   let open Vdom.Attr in
-  div ~attrs:[ class_ "page" ]
-    [ div ~attrs:[ class_ "hero" ]
-        [ h1 [ text "Yannick Schürmann" ]
-        ; p
-            [ text
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-                 Suspendisse varius enim in eros elementum tristique."
-            ]
-        ; ul ~attrs:[ class_ "nav" ]
-            [ li [ a ~attrs:[ href "#about" ] [ text "About" ] ]
-            ; li [ a ~attrs:[ href "#projects" ] [ text "Projects" ] ]
-            ; li [ a ~attrs:[ href "#contact" ] [ text "Contact" ] ]
+  let txt = Vdom.Node.text in
+  div ~attrs:[]
+    [ (* Section 1: Intro *)
+      div ~attrs:[ class_ "intro-section" ]
+        [ div ~attrs:[ class_ "container" ]
+            [ div ~attrs:[ class_ "intro-content" ]
+                [ div ~attrs:[ class_ "intro-left" ]
+                    [ div ~attrs:[ class_ "intro-name" ]
+                        [ txt "Yannick"; br (); txt "Schürmann" ]
+                    ; div ~attrs:[ class_ "intro-links" ]
+                        [ a ~attrs:[ href "https://github.com"; class_ "intro-link" ] [ txt "GitHub" ]
+                        ; a ~attrs:[ href "mailto:email@example.com"; class_ "intro-link" ] [ txt "Email" ]
+                        ; a ~attrs:[ href "https://linkedin.com"; class_ "intro-link" ] [ txt "LinkedIn" ]
+                        ]
+                    ]
+                ; div ~attrs:[ class_ "gif-placeholder" ]
+                    [ txt "[GIF Placeholder]" ]
+                ]
             ]
         ]
-    ; div ~attrs:[ class_ "content" ]
-        [ div ~attrs:[ id "about" ]
-            [ h2 [ text "About" ]
-            ; p
-                [ text
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
-                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    ; (* Section 2: About Me *)
+      div ~attrs:[ class_ "about-section" ]
+        [ div ~attrs:[ class_ "container" ]
+            [ h2 ~attrs:[ class_ "about-heading" ] [ txt "About me" ]
+            ; div ~attrs:[ class_ "about-content" ]
+                [ div ~attrs:[ class_ "profile-photo" ]
+                    [ txt "[Photo]" ]
+                ; div ~attrs:[ class_ "about-text" ]
+                    [ p [ txt "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+                               Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
+                               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." ]
+                    ; p [ txt "Duis aute irure dolor in reprehenderit in voluptate velit esse \
+                               cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat \
+                               cupidatat non proident, sunt in culpa qui officia deserunt mollit." ]
+                    ; p [ txt "Sed ut perspiciatis unde omnis iste natus error sit voluptatem \
+                               accusantium doloremque laudantium, totam rem aperiam." ]
+                    ]
                 ]
             ]
-        ; div ~attrs:[ id "projects" ]
-            [ h2 [ text "Projects" ]
-            ; p
-                [ text
-                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco \
-                     laboris nisi ut aliquip ex ea commodo consequat."
-                ]
-            ; div ~attrs:[ class_ "project-card"; on_click (fun _ -> go_to Project1) ]
-                [ h3 [ text "Project 1" ]
-                ; p [ text "Click to view details →" ]
+        ]
+    ; (* Section 3: Projects *)
+      div ~attrs:[ class_ "projects-section" ]
+        [ div ~attrs:[ class_ "container" ]
+            [ div ~attrs:[ class_ "section-watermark" ] [ txt "Projects" ]
+            ; div ~attrs:[ class_ "projects-grid" ]
+                [ div ~attrs:[ class_ "project-card"; on_click (fun _ -> go_to Project1) ]
+                    [ txt "Project 1" ]
+                ; div ~attrs:[ class_ "project-card"; on_click (fun _ -> go_to Project2) ]
+                    [ txt "Project 2" ]
+                ; div ~attrs:[ class_ "project-card"; on_click (fun _ -> go_to Project3) ]
+                    [ txt "Project 3" ]
+                ; div ~attrs:[ class_ "project-card"; on_click (fun _ -> go_to Project4) ]
+                    [ txt "Project 4" ]
                 ]
             ]
-        ; div ~attrs:[ id "contact" ]
-            [ h2 [ text "Contact" ]
-            ; p
-                [ text
-                    "Duis aute irure dolor in reprehenderit in voluptate velit esse \
-                     cillum dolore eu fugiat nulla pariatur."
+        ]
+    ; (* Section 4: Experience *)
+      div ~attrs:[ class_ "experience-section" ]
+        [ div ~attrs:[ class_ "container" ]
+            [ h2 ~attrs:[ class_ "experience-heading" ] [ txt "Experience" ]
+            ; div ~attrs:[ class_ "experience-item" ]
+                [ div ~attrs:[ class_ "experience-labels" ]
+                    [ p [ txt "Place" ]
+                    ; p [ txt "Title" ]
+                    ; p [ txt "Time" ]
+                    ]
+                ; div ~attrs:[ class_ "experience-description" ]
+                    [ p [ txt "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+                               Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." ]
+                    ; p [ txt "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris \
+                               nisi ut aliquip ex ea commodo consequat." ]
+                    ]
                 ]
             ]
         ]
     ]
 
-let project1_page ~go_to =
+let project_page ~go_to ~page_title ~page_description =
   let open Vdom.Node in
   let open Vdom.Attr in
-  div ~attrs:[ class_ "page" ]
-    [ button ~attrs:[ class_ "back-btn"; on_click (fun _ -> go_to Home) ]
-        [ text "← Back" ]
-    ; div ~attrs:[ class_ "hero" ]
-        [ h1 [ text "Project 1" ]
-        ; p
-            [ text
-                "This is the detailed page for Project 1."
-            ]
-        ]
-    ; div ~attrs:[ class_ "content" ]
-        [ h2 [ text "Overview" ]
-        ; p
-            [ text
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do \
-                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim \
-                 ad minim veniam, quis nostrud exercitation ullamco laboris."
-            ]
-        ; h2 [ text "Details" ]
-        ; p
-            [ text
-                "Duis aute irure dolor in reprehenderit in voluptate velit esse \
-                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat \
-                 cupidatat non proident, sunt in culpa qui officia deserunt mollit \
-                 anim id est laborum."
-            ]
-        ; h2 [ text "Technical Stack" ]
+  let txt = Vdom.Node.text in
+  div ~attrs:[ class_ "project-detail" ]
+    [ div ~attrs:[ class_ "container" ]
+        [ button ~attrs:[ class_ "back-btn"; on_click (fun _ -> go_to Home) ]
+            [ txt "← Back" ]
+        ; h1 [ txt page_title ]
+        ; p [ txt page_description ]
+        ; h2 [ txt "Overview" ]
+        ; p [ txt "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do \
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim \
+                    ad minim veniam, quis nostrud exercitation ullamco laboris." ]
+        ; h2 [ txt "Details" ]
+        ; p [ txt "Duis aute irure dolor in reprehenderit in voluptate velit esse \
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat \
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit \
+                    anim id est laborum." ]
+        ; h2 [ txt "Technical Stack" ]
         ; ul ~attrs:[ class_ "tech-list" ]
-            [ li [ text "OCaml" ]
-            ; li [ text "Bonsai" ]
-            ; li [ text "Mirage" ]
+            [ li [ txt "OCaml" ]
+            ; li [ txt "Bonsai" ]
+            ; li [ txt "Mirage" ]
             ]
         ]
     ]
@@ -95,7 +116,10 @@ let app graph =
     let go_to page = set_page page in
     match current_page with
     | Home -> home_page ~go_to
-    | Project1 -> project1_page ~go_to)
+    | Project1 -> project_page ~go_to ~page_title:"Project 1" ~page_description:"This is the first project."
+    | Project2 -> project_page ~go_to ~page_title:"Project 2" ~page_description:"This is the second project."
+    | Project3 -> project_page ~go_to ~page_title:"Project 3" ~page_description:"This is the third project."
+    | Project4 -> project_page ~go_to ~page_title:"Project 4" ~page_description:"This is the fourth project.")
 
 let () =
   Bonsai_web.Start.start app
