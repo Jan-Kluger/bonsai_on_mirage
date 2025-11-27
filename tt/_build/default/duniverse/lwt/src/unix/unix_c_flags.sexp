@@ -1,1 +1,0 @@
-("-Wall" "-fdiagnostics-color=always")
